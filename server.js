@@ -1,5 +1,8 @@
 'use strict';
 
+//heroku ps:scale web=0
+//heroku ps:scale web=1
+
 const express = require('express');
 const socketIO = require('socket.io');
 
