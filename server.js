@@ -1,5 +1,9 @@
 'use strict';
 
+//? local test
+// npm start
+
+//? on/off production
 //heroku ps:scale web=0
 //heroku ps:scale web=1
 
@@ -20,4 +24,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+setInterval(() => {
+  io.emit('time', new Date().toTimeString());
+  console.log("tick")
+},5000);
