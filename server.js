@@ -19,20 +19,20 @@ const server = express()
 
 const io = socketIO(server);
 
-io.on('connection', (socket) => {
-  console.log('Client connected');
-  socket.on('disconnect', () => console.log('Client disconnected'));
-});
-
-// setInterval(() => {
-//   io.emit('time', new Date().toTimeString());
-//   console.log("tick")
-// },1000);
+// io.on('connection', (socket) => {
+//   console.log('Client connected');
+//   socket.on('disconnect', () => console.log('Client disconnected'));
+// });
 
 var i = 0;
 
 setInterval(() => {  
   i += 1;
   io.emit('fast', i)
-  //console.log("tick")
-},5);
+  //console.log("tik " + i)
+},25);
+
+setInterval(() => {
+  io.emit('time', new Date().toTimeString(), i);
+  //console.log("------- " + i)
+},1000);

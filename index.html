@@ -5,16 +5,15 @@
   <script>
     let socket = io();
     let el;
-    //let elCounter;
-    var elCounter = document.getElementById('counter');
-    
+    let elCounter;    
 
-    socket.on('time', (timeString) => {
+    socket.on('time', (timeString, i) => {
       el = document.getElementById('server-time');
-      el.innerHTML = 'Server time: ' + timeString + ' xD';
+      el.innerHTML = 'Server time: ' + timeString + ' xD' + i;
     });
 
     socket.on('fast', (iFromServer) => {
+      elCounter = document.getElementById('counter');
       elCounter.innerHTML = iFromServer;
     })
   </script>
