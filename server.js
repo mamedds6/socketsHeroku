@@ -24,10 +24,10 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
-setInterval(() => {
-  io.emit('time', new Date().toTimeString());
-  console.log("tick")
-},10000);
+// setInterval(() => {
+//   io.emit('time', new Date().toTimeString());
+//   console.log("tick")
+// },1000);
 
 var i = 0;
 
@@ -35,4 +35,4 @@ setInterval(() => {
   i += 1;
   io.emit('fast', i)
   //console.log("tick")
-},20);
+},5);
