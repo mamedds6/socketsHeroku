@@ -19,20 +19,32 @@ const server = express()
 
 const io = socketIO(server);
 
-// io.on('connection', (socket) => {
-//   console.log('Client connected');
-//   socket.on('disconnect', () => console.log('Client disconnected'));
-// });
+var clients = [];
+
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+    clients.splice(clients.indexOf(socket.client.id), 1);
+    console.log(clients);
+  });
+
+  clients.push(socket.client.id);
+  console.log(socket.client.id);
+
+  io.emit('clients', socket.id, clients);
+  console.log(clients);
+});
 
 var i = 0;
 
-setInterval(() => {  
+setInterval(() => {
   i += 1;
-  io.emit('fast', i)
+  io.emit('fast', i);
   //console.log("tik " + i)
-},25);
+}, 25);
 
 setInterval(() => {
   io.emit('time', new Date().toTimeString(), i);
   //console.log("------- " + i)
-},1000);
+}, 1000);

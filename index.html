@@ -16,13 +16,26 @@
       elCounter = document.getElementById('counter');
       elCounter.innerHTML = iFromServer;
     })
+
+    socket.on('clients', (socketId, clients) => {
+      elLast = document.getElementById('last');
+      elLast.innerHTML = 'Last connected client: '  + socketId;
+
+
+      // elOl = document.getElementById('server-clients');
+      // elOl.innerHTML = "<li> ops </li>";
+
+    })
+
   </script>
 </head>
 
 <body>
   <p id="server-time"></p>
-  <br>
   <p id='counter'></p>
+  <br>
+  <p id='last'></p>
+  <!-- <ol id='server-clients'></ol> -->
 </body>
 
 </html>
