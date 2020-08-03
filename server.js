@@ -27,4 +27,12 @@ io.on('connection', (socket) => {
 setInterval(() => {
   io.emit('time', new Date().toTimeString());
   console.log("tick")
-},5000);
+},10000);
+
+var i = 0;
+
+setInterval(() => {  
+  i += 1;
+  io.emit('fast', i)
+  //console.log("tick")
+},20);
